@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Lab2</string>
+    <!-- String related to shared preferences -->
+    <string name="preference_user_key">com.example.lenovo.lab.USER</string>
+    <string name="preference_user_key_default">none</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>
