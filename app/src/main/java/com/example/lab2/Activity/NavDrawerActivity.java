@@ -4,22 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -42,7 +35,7 @@ public class NavDrawerActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view,     "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -72,35 +65,9 @@ public class NavDrawerActivity extends AppCompatActivity
         //using privileges to lock data
         switch (privilegio) {
             case "administrador":
-                holder = menu.findItem(R.id.nav_ofertaAcademica);
-                holder.setEnabled(true);
-                holder = menu.findItem(R.id.nav_matricula);
-                holder.setEnabled(true);
-                holder = menu.findItem(R.id.nav_consultaHistorial);
-                holder.setEnabled(true);
                 holder = menu.findItem(R.id.nav_curso);
                 holder.setEnabled(true);
-                holder = menu.findItem(R.id.nav_carrera);
-                holder.setEnabled(true);
-                holder = menu.findItem(R.id.nav_profesor);
-                holder.setEnabled(true);
                 holder = menu.findItem(R.id.nav_alumno);
-                holder.setEnabled(true);
-                holder = menu.findItem(R.id.nav_ciclo);
-                holder.setEnabled(true);
-                holder = menu.findItem(R.id.nav_seguridad);
-                holder.setEnabled(true);
-                break;
-            case "matriculador":
-                holder = menu.findItem(R.id.nav_matricula);
-                holder.setEnabled(true);
-                break;
-            case "profesor":
-                holder = menu.findItem(R.id.nav_registroHoras);
-                holder.setEnabled(true);
-                break;
-            case "estudiante":
-                holder = menu.findItem(R.id.nav_consultaHistorial);
                 holder.setEnabled(true);
                 break;
             default:    //if is none
@@ -150,43 +117,12 @@ public class NavDrawerActivity extends AppCompatActivity
         SharedPreferences prefs = this.getSharedPreferences(getString(R.string.preference_user_key), Context.MODE_PRIVATE);
         String defaultValue = getResources().getString(R.string.preference_user_key_default);
         String privilegio = prefs.getString(getString(R.string.preference_user_key), defaultValue);
-
-        if (id == R.id.nav_ofertaAcademica) {
-            Toast.makeText(getApplicationContext(), "Oferta Academica", Toast.LENGTH_SHORT).show();
-            abrirOfertaAcademica();
-        } else if (id == R.id.nav_matricula) {
-            Toast.makeText(getApplicationContext(), "Matricula", Toast.LENGTH_SHORT).show();
-            abrirAdmAlumno();
-        } else if (id == R.id.nav_registroHoras) {
-            Toast.makeText(getApplicationContext(), "Registro de Notas", Toast.LENGTH_SHORT).show();
-            abrirRegistroNotas();
-        } else if (id == R.id.nav_consultaHistorial) {
-            Toast.makeText(getApplicationContext(), "Consulta de Historial", Toast.LENGTH_SHORT).show();
-            if (privilegio.equals("administrador"))
-                abrirAdmHistorial();
-            else
-                abrirHistorial();
-        } else if (id == R.id.nav_alumno) {
+        if (id == R.id.nav_alumno) {
             Toast.makeText(getApplicationContext(), "Alumnos", Toast.LENGTH_SHORT).show();
             abrirAdmAlumno();
-        } else if (id == R.id.nav_ciclo) {
-            Toast.makeText(getApplicationContext(), "Ciclos", Toast.LENGTH_SHORT).show();
-            abrirAdmCiclo();
         } else if (id == R.id.nav_curso) {
             Toast.makeText(getApplicationContext(), "Cursos", Toast.LENGTH_SHORT).show();
             abrirAdmCurso();
-        } else if (id == R.id.nav_profesor) {
-            Toast.makeText(getApplicationContext(), "Profesores", Toast.LENGTH_SHORT).show();
-            abrirAdmProfesor();
-        } else if (id == R.id.nav_carrera) {
-            Toast.makeText(getApplicationContext(), "Carreras", Toast.LENGTH_SHORT).show();
-            abrirAdmCarrera();
-        } else if (id == R.id.nav_logout) {
-            Toast.makeText(getApplicationContext(), "Log Out", Toast.LENGTH_SHORT).show();
-            abrirLogin();
-        } else if (id == R.id.nav_seguridad) {
-            Toast.makeText(getApplicationContext(), "Seguridad", Toast.LENGTH_SHORT).show();
-            abrirAdmSeguridad();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -196,13 +132,8 @@ public class NavDrawerActivity extends AppCompatActivity
 
     public void abrirLogin() {
         finish();
-        Intent a = new Intent(this, LoginActivity.class);
+        Intent a = new Intent(this, Login.class);
         startActivity(a);
-    }
-
-    public void abrirAdmCarrera() {
-        Intent intent = new Intent(this, AdmCarreraActivity.class);
-        startActivity(intent);
     }
 
     public void abrirAdmCurso() {
@@ -210,45 +141,8 @@ public class NavDrawerActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void abrirAdmProfesor() {
-        Intent intent = new Intent(this, AdmProfesorActivity.class);
-        startActivity(intent);
-    }
-
     public void abrirAdmAlumno() {
         Intent intent = new Intent(this, AdmAlumnoActivity.class);
         startActivity(intent);
-    }
-
-    public void abrirAdmCiclo() {
-        Intent intent = new Intent(this, AdmCicloActivity.class);
-        startActivity(intent);
-    }
-
-    public void abrirOfertaAcademica() {
-        Intent intent = new Intent(this, OfertaAcademicaActivity.class);
-        startActivity(intent);
-    }
-
-    public void abrirAdmSeguridad() {
-        Intent intent = new Intent(this, AdmSeguridadActivity.class);
-        startActivity(intent);
-    }
-
-    public void abrirHistorial() {
-        Intent intent = new Intent(this, HistorialActivity.class);
-        startActivity(intent);
-    }
-
-    public void abrirRegistroNotas() {
-        Intent intent = new Intent(this, RegistroNotasActivity.class);
-        startActivity(intent);
-    }
-
-    public void abrirAdmHistorial() {
-        Intent intent = new Intent(this, AdmAlumnoActivity.class);
-        intent.putExtra("from", "historial");
-        startActivity(intent);
-        finish();
     }
 }
