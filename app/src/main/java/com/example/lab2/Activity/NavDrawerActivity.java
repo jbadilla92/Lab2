@@ -65,7 +65,7 @@ public class NavDrawerActivity extends AppCompatActivity
         //using privileges to lock data
         switch (privilegio) {
             case "administrador":
-                holder = menu.findItem(R.id.nav_curso);
+                holder = menu.findItem(R.id.nav_curso1234);
                 holder.setEnabled(true);
                 holder = menu.findItem(R.id.nav_alumno);
                 holder.setEnabled(true);
@@ -120,7 +120,7 @@ public class NavDrawerActivity extends AppCompatActivity
         if (id == R.id.nav_alumno) {
             Toast.makeText(getApplicationContext(), "Alumnos", Toast.LENGTH_SHORT).show();
             abrirAdmAlumno();
-        } else if (id == R.id.nav_curso) {
+        } else if (id == R.id.nav_curso1234) {
             Toast.makeText(getApplicationContext(), "Cursos", Toast.LENGTH_SHORT).show();
             abrirAdmCurso();
         }
